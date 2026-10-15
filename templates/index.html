@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Household Waste Classification - Smart AI-ready waste segregation platform for modern, sustainable homes.">
+    <title>EcoSort | Household Waste Classification</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <!-- Header & Navigation -->
+    <header class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#home" class="brand-logo" id="brandLogo">
+                <svg class="leaf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+                    <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+                </svg>
+                <span>Eco<strong>Sort</strong></span>
+            </a>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#classify" class="nav-link">Classify Waste</a>
+                <a href="#categories" class="nav-link">Categories</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#metrics" class="nav-link">Model Metrics</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <a href="#classify" class="btn-nav">Get Started</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section" id="home">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="badge-pill">
+                        <span class="badge-dot"></span>
+                        Household Waste Management
+                    </div>
+                    <h1 class="hero-title">Smart Segregation for a <span class="highlight-green">Greener Tomorrow</span></h1>
+                    <p class="hero-description">
+                        Classify household waste with ease. Upload an image of your everyday waste to identify whether it's organic, recyclable, or hazardous, ensuring responsible disposal right at your doorstep.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#classify" class="btn btn-primary" id="heroCtaBtn">
+                            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                <polyline points="17 8 12 3 7 8"/>
+                                <line x1="12" y1="3" x2="12" y2="15"/>
+                            </svg>
+                            Upload Waste Image
+                        </a>
+                        <a href="#about" class="btn btn-secondary">Learn How It Works</a>
+                    </div>
+
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">4+</div>
+                            <div class="stat-label">Waste Streams</div>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">Eco-Friendly Focus</div>
+                        </div>
+                        <div class="stat-divider"></div>
+                        <div class="stat-item">
+                            <div class="stat-number">Ready</div>
+                            <div class="stat-label">For AI Integration</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hero-graphic">
+                    <div class="eco-card-preview">
+                        <div class="preview-badge">Architecture Blueprint</div>
+                        <div class="stream-indicators">
+                            <div class="stream-pill organic">🌱 Organic / Wet</div>
+                            <div class="stream-pill recyclable">♻️ Recyclable</div>
+                            <div class="stream-pill hazardous">⚠️ Hazardous</div>
+                            <div class="stream-pill landfill">🗑️ Residual / Dry</div>
+                        </div>
+                        <div class="mock-flow">
+                            <div class="flow-step">
+                                <span class="flow-num">1</span>
+                                <div>
+                                    <h4>Capture Waste</h4>
+                                    <p>Snap photo of food, plastic, or carton</p>
+                                </div>
+                            </div>
+                            <div class="flow-step">
+                                <span class="flow-num">2</span>
+                                <div>
+                                    <h4>Neural Analysis</h4>
+                                    <p>Computer Vision sorts into bin categories</p>
+                                </div>
+                            </div>
+                            <div class="flow-step">
+                                <span class="flow-num">3</span>
+                                <div>
+                                    <h4>Correct Disposal</h4>
+                                    <p>Follow tailored segregation guidance</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Image Upload / Classification Section -->
+        <section class="section-classify" id="classify">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Interactive Tool</span>
+                    <h2 class="section-title">Waste Image Classifier</h2>
+                    <p class="section-subtitle">
+                        Upload or drop an image of household waste below. The system is architected for instant deep-learning inference.
+                    </p>
+                </div>
+
+                <!-- Status Callout -->
+                <div class="model-status-card" id="modelStatusBanner">
+                    <div class="status-icon-wrapper">
+                        <svg class="status-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="12" y1="8" x2="12" y2="12"/>
+                            <line x1="12" y1="16" x2="12.01" y2="16"/>
+                        </svg>
+                    </div>
+                    <div class="status-text">
+                        <strong>AI Model Integration Pending:</strong>
+                        <span>Web interface and pipeline are active. Predictions will activate once you train and connect your machine learning weights in <code>app.py</code>.</span>
+                    </div>
+                </div>
+
+                <div class="classifier-grid">
+                    <!-- Upload Box -->
+                    <div class="upload-wrapper">
+                        <form id="uploadForm" enctype="multipart/form-data">
+                            <div class="dropzone" id="dropzone">
+                                <input type="file" id="wasteImageInput" name="waste_image" accept="image/png, image/jpeg, image/jpg, image/webp" hidden>
+                                
+                                <div class="dropzone-content" id="dropzonePrompt">
+                                    <div class="upload-icon-circle">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                            <polyline points="17 8 12 3 7 8"/>
+                                            <line x1="12" y1="3" x2="12" y2="15"/>
+                                        </svg>
+                                    </div>
+                                    <h3 class="dropzone-heading">Drop your waste photo here</h3>
+                                    <p class="dropzone-text">or <span class="browse-link">browse from your computer</span></p>
+                                    <span class="file-limits">Supports JPG, PNG, WEBP (Max 16MB)</span>
+                                </div>
+
+                                <!-- Image Preview Container -->
+                                <div class="preview-container hidden" id="previewContainer">
+                                    <img id="imagePreview" src="" alt="Selected waste preview">
+                                    <div class="preview-overlay">
+                                        <button type="button" class="btn-change-image" id="changeImageBtn" title="Change Image">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/>
+                                            </svg>
+                                            Change Photo
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="action-bar">
+                                <button type="button" class="btn btn-secondary" id="resetBtn" disabled>
+                                    Clear
+                                </button>
+                                <button type="submit" class="btn btn-primary" id="analyzeBtn" disabled>
+                                    <span class="btn-text">Analyze Waste</span>
+                                    <div class="spinner hidden" id="spinner"></div>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Prediction Result Panel -->
+                    <div class="results-wrapper">
+                        <div class="results-card" id="resultsCard">
+                            <div class="results-header">
+                                <h3 class="results-title">Classification Output</h3>
+                                <span class="status-tag awaiting" id="statusTag">Ready to Scan</span>
+                            </div>
+
+                            <!-- Initial Empty State -->
+                            <div class="empty-state" id="emptyState">
+                                <div class="empty-state-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                        <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
+                                        <circle cx="9" cy="9" r="2"/>
+                                        <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+                                    </svg>
+                                </div>
+                                <p>Select or drag an image into the upload box and press <strong>"Analyze Waste"</strong> to inspect classification pipeline data.</p>
+                            </div>
+
+                            <!-- Loaded Result State -->
+                            <div class="result-details hidden" id="resultDetails">
+                                <!-- Prediction Header Banner -->
+                                <div class="prediction-header-banner" id="predictionHeaderBanner">
+                                    <div class="prediction-main-info">
+                                        <span class="prediction-category-title" id="predCategoryTitle">Category</span>
+                                        <div class="prediction-stream-pill" id="predStreamPill">Waste Stream</div>
+                                    </div>
+                                    <div class="confidence-badge" id="predConfidenceBadge">
+                                        <span class="confidence-number" id="predConfidenceNumber">0%</span>
+                                        <span class="confidence-label">Confidence</span>
+                                    </div>
+                                </div>
+
+                                <!-- Confidence Progress Bar -->
+                                <div class="confidence-bar-container">
+                                    <div class="confidence-bar-track">
+                                        <div class="confidence-bar-fill" id="predConfidenceBar" style="width: 0%;"></div>
+                                    </div>
+                                </div>
+
+                                <!-- Recommended Bin Card -->
+                                <div class="bin-recommendation-box" id="binRecommendationBox">
+                                    <div class="bin-icon-circle" id="binIconCircle">🗑️</div>
+                                    <div class="bin-text-info">
+                                        <span class="bin-action-label">Segregation Destination:</span>
+                                        <h4 class="bin-title" id="predBinTitle">Recommended Bin</h4>
+                                        <p class="bin-guidance-text" id="predGuidanceText">Follow municipal guidance.</p>
+                                    </div>
+                                </div>
+
+                                <!-- Top 3 Distribution Breakdown -->
+                                <div class="top3-container" id="top3Container">
+                                    <span class="top3-title">Neural Probability Distribution</span>
+                                    <div class="top3-bars" id="top3Bars">
+                                        <!-- Dynamically populated -->
+                                    </div>
+                                </div>
+
+                                <!-- Model & File Meta -->
+                                <div class="meta-row">
+                                    <span class="meta-sub">Selected File: <strong id="resultFilename">-</strong></span>
+                                    <span class="meta-sub">Backbone: <strong>MobileNetV2</strong></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Waste Categories Guide -->
+        <section class="section-categories" id="categories">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Household Reference</span>
+                    <h2 class="section-title">Common Household Waste Categories</h2>
+                    <p class="section-subtitle">Proper segregation keeps materials out of landfills and accelerates municipal recycling.</p>
+                </div>
+
+                <div class="categories-grid">
+                    <!-- Category 1 -->
+                    <div class="category-card organic-border">
+                        <div class="category-icon-wrapper organic-bg">
+                            🍃
+                        </div>
+                        <h3 class="category-title">Organic / Biodegradable</h3>
+                        <p class="category-desc">Decomposable kitchen and garden waste suitable for home composting or biogas production.</p>
+                        <div class="bin-indicator green-bin">
+                            <span>Recommended Bin: Green</span>
+                        </div>
+                        <ul class="item-list">
+                            <li>Fruit & vegetable peels</li>
+                            <li>Coffee grounds & tea bags</li>
+                            <li>Leftover food scraps</li>
+                            <li>Dry leaves and plant cuttings</li>
+                        </ul>
+                    </div>
+
+                    <!-- Category 2 -->
+                    <div class="category-card recyclable-border">
+                        <div class="category-icon-wrapper recyclable-bg">
+                            ♻️
+                        </div>
+                        <h3 class="category-title">Dry Recyclable</h3>
+                        <p class="category-desc">Clean, dry materials that can be mechanically sorted and reprocessed into new products.</p>
+                        <div class="bin-indicator blue-bin">
+                            <span>Recommended Bin: Blue</span>
+                        </div>
+                        <ul class="item-list">
+                            <li>Cardboard boxes & paper</li>
+                            <li>Clean plastic bottles & jugs</li>
+                            <li>Aluminum cans & foil</li>
+                            <li>Glass jars & bottles</li>
+                        </ul>
+                    </div>
+
+                    <!-- Category 3 -->
+                    <div class="category-card hazardous-border">
+                        <div class="category-icon-wrapper hazardous-bg">
+                            ⚡
+                        </div>
+                        <h3 class="category-title">Hazardous & E-Waste</h3>
+                        <p class="category-desc">Dangerous substances that require specialized handling to prevent toxic environmental leakage.</p>
+                        <div class="bin-indicator red-bin">
+                            <span>Recommended Bin: Red / Designated E-drop</span>
+                        </div>
+                        <ul class="item-list">
+                            <li>Spent household batteries</li>
+                            <li>Old phones, chargers & wires</li>
+                            <li>Fluorescent bulbs & tubes</li>
+                            <li>Chemical cleaners & aerosol cans</li>
+                        </ul>
+                    </div>
+
+                    <!-- Category 4 -->
+                    <div class="category-card landfill-border">
+                        <div class="category-icon-wrapper landfill-bg">
+                            🗑️
+                        </div>
+                        <h3 class="category-title">Residual / Non-Recyclable</h3>
+                        <p class="category-desc">Non-biodegradable items contaminated with soil, grease, or composed of mixed polymers.</p>
+                        <div class="bin-indicator grey-bin">
+                            <span>Recommended Bin: Grey / Black</span>
+                        </div>
+                        <ul class="item-list">
+                            <li>Sanitary napkins & diapers</li>
+                            <li>Greasy pizza boxes</li>
+                            <li>Multi-layered snack packaging</li>
+                            <li>Broken ceramics & mirrors</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="section-about" id="about">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-text">
+                        <span class="section-tag">About The Project</span>
+                        <h2 class="section-title">Automating Sustainable Habits with AI</h2>
+                        <p>
+                            Household waste contamination is the number one cause of recycling program failure. When recyclable items are improperly mixed with wet organic waste or dangerous chemicals, entire batches end up in landfills.
+                        </p>
+                        <p>
+                            <strong>EcoSort</strong> is designed as a foundational deep-learning web platform. By enabling households and recycling facilities to take a photo of an item, computer vision classification models can instantly identify the material type and direct it to the correct bin.
+                        </p>
+                        
+                        <div class="about-features">
+                            <div class="about-feature-item">
+                                <div class="feature-bullet">✓</div>
+                                <div>
+                                    <h4>Dataset Flexible</h4>
+                                    <p>Ready to plug in custom models trained on Kaggle waste datasets or proprietary local waste data.</p>
+                                </div>
+                            </div>
+                            <div class="about-feature-item">
+                                <div class="feature-bullet">✓</div>
+                                <div>
+                                    <h4>Fast Web Interface</h4>
+                                    <p>Lightweight asynchronous image uploading designed for instantaneous desktop and mobile usage.</p>
+                                </div>
+                            </div>
+                            <div class="about-feature-item">
+                                <div class="feature-bullet">✓</div>
+                                <div>
+                                    <h4>Community Centered</h4>
+                                    <p>Clear segregation instructions tailored for modern environmental guidelines.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-card-side">
+                        <div class="mission-card">
+                            <h3>Our Core Goals</h3>
+                            <div class="goal-item">
+                                <span class="goal-number">01</span>
+                                <p><strong>Reduce Landfill Waste:</strong> Increase the purity of segregated waste at the source.</p>
+                            </div>
+                            <div class="goal-item">
+                                <span class="goal-number">02</span>
+                                <p><strong>Empower Citizens:</strong> Remove confusion regarding what can and cannot be recycled.</p>
+                            </div>
+                            <div class="goal-item">
+                                <span class="goal-number">03</span>
+                                <p><strong>Open ML Architecture:</strong> Provide an extensible starting point for CV researchers and developers.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Model Performance & Test Metrics Section -->
+        <section class="section-metrics" id="metrics">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Empirical Evaluation</span>
+                    <h2 class="section-title">Model Performance & Test Results</h2>
+                    <p class="section-subtitle">Trained with MobileNetV2 Transfer Learning and evaluated on 540 isolated test images across all 12 categories.</p>
+                </div>
+
+                <div class="metrics-summary-grid">
+                    <div class="metric-card">
+                        <span class="metric-value">88.33%</span>
+                        <span class="metric-title">Test Accuracy</span>
+                        <p class="metric-sub">Evaluated on independent test set</p>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-value">88.11%</span>
+                        <span class="metric-title">Macro F1-Score</span>
+                        <p class="metric-sub">Balanced performance across 12 classes</p>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-value">88.11%</span>
+                        <span class="metric-title">Weighted F1-Score</span>
+                        <p class="metric-sub">Reliable harmonic precision-recall</p>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-value">12</span>
+                        <span class="metric-title">Active Classes</span>
+                        <p class="metric-sub">Zero data leakage held-out evaluation</p>
+                    </div>
+                </div>
+
+                <div class="plots-grid">
+                    <div class="plot-box">
+                        <h4 class="plot-box-title">📊 Confusion Matrix (540 Test Samples)</h4>
+                        <img src="{{ url_for('static', filename='confusion_matrix.png') }}" alt="Confusion Matrix on Test Set" class="plot-image">
+                    </div>
+                    <div class="plot-box">
+                        <h4 class="plot-box-title">📈 Training & Validation Convergence</h4>
+                        <img src="{{ url_for('static', filename='training_history.png') }}" alt="Training Accuracy and Loss History" class="plot-image">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="section-contact" id="contact">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Get In Touch</span>
+                    <h2 class="section-title">Feedback & Inquiries</h2>
+                    <p class="section-subtitle">Have questions about adding your dataset or recommendations for waste categories? Reach out!</p>
+                </div>
+
+                <div class="contact-grid">
+                    <!-- Contact Information Cards -->
+                    <div class="contact-info">
+                        <div class="info-card">
+                            <div class="info-icon">📍</div>
+                            <div class="info-details">
+                                <h4>Project Headquarters</h4>
+                                <p>Household Waste Classification Initiative</p>
+                                <span>Sustainable Smart Cities Lab</span>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <div class="info-icon">✉️</div>
+                            <div class="info-details">
+                                <h4>Email Us</h4>
+                                <p>contact@ecosort-project.local</p>
+                                <span>Response within 24-48 hours</span>
+                            </div>
+                        </div>
+
+                        <div class="info-card">
+                            <div class="info-icon">💡</div>
+                            <div class="info-details">
+                                <h4>Dataset Contributions</h4>
+                                <p>We welcome tagged image collections for organic, plastic, and hazardous waste categories.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="contact-form-wrapper">
+                        <form id="contactForm" class="contact-form">
+                            <div id="contactAlert" class="alert-box hidden"></div>
+                            
+                            <div class="form-group">
+                                <label for="contactName">Your Name *</label>
+                                <input type="text" id="contactName" name="name" placeholder="e.g. Jane Doe" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contactEmail">Email Address *</label>
+                                <input type="email" id="contactEmail" name="email" placeholder="jane@example.com" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contactSubject">Subject</label>
+                                <input type="text" id="contactSubject" name="subject" placeholder="Dataset inquiry / general suggestion">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contactMessage">Message *</label>
+                                <textarea id="contactMessage" name="message" rows="4" placeholder="Write your message here..." required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary" id="contactSubmitBtn">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <a href="#home" class="brand-logo footer-logo">
+                    <svg class="leaf-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+                        <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+                    </svg>
+                    <span>Eco<strong>Sort</strong></span>
+                </a>
+                <p class="footer-tagline">Empowering clean communities through intelligent waste classification.</p>
+            </div>
+
+            <div class="footer-links">
+                <h4>Quick Navigation</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#classify">Upload & Classify</a></li>
+                    <li><a href="#categories">Waste Categories</a></li>
+                    <li><a href="#about">About Project</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-tip">
+                <h4>Eco Tip of the Day</h4>
+                <p>Always rinse food containers and milk cartons before placing them in the blue recycling bin to avoid contamination!</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container footer-bottom-inner">
+                <p>&copy; 2026 Household Waste Classification Project. All rights reserved.</p>
+                <p class="model-disclaimer">Notice: AI Prediction model is pending user dataset training.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

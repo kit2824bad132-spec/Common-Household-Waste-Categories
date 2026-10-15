@@ -1,0 +1,25 @@
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Python cache & artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Uploads directory (keep directory, ignore uploaded test files)
+static/uploads/*
+!static/uploads/.gitkeep
+
+# Dataset (large collection of 15,000+ local training images)
+dataset/
+
+# OS and IDE files
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+.vscode/

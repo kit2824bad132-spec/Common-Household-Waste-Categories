@@ -1,0 +1,74 @@
+{
+  "battery": {
+    "bin_color": "Red",
+    "stream": "Hazardous & E-Waste",
+    "badge_class": "hazardous",
+    "guidance": "Never dispose of batteries in general household bins! Take to an authorized e-waste drop-off box or battery collection depot to prevent toxic lithium/acid leakage."
+  },
+  "biological": {
+    "bin_color": "Green",
+    "stream": "Organic / Compostable",
+    "badge_class": "organic",
+    "guidance": "Place in the green organic/wet bin. Ideal for home composting or municipal biomethanation processing."
+  },
+  "brown-glass": {
+    "bin_color": "Blue",
+    "stream": "Recyclable Glass",
+    "badge_class": "recyclable",
+    "guidance": "Rinse thoroughly, remove metal caps, and place in the dry recyclables blue bin for color-separated glass recycling."
+  },
+  "cardboard": {
+    "bin_color": "Blue",
+    "stream": "Paper & Cardboard",
+    "badge_class": "recyclable",
+    "guidance": "Flatten boxes to save space. Keep dry and free of food oil or grease before depositing in the recyclables bin."
+  },
+  "clothes": {
+    "bin_color": "Yellow/Purple",
+    "stream": "Textile Reuse / Recycling",
+    "badge_class": "textile",
+    "guidance": "If in wearable condition, donate to local charities or shelters. Torn garments can be deposited in municipal textile recycling banks."
+  },
+  "green-glass": {
+    "bin_color": "Blue",
+    "stream": "Recyclable Glass",
+    "badge_class": "recyclable",
+    "guidance": "Rinse clean and discard in designated glass recycling stream. 100% infinitely recyclable."
+  },
+  "metal": {
+    "bin_color": "Blue",
+    "stream": "Dry Recyclables (Metals)",
+    "badge_class": "recyclable",
+    "guidance": "Empty and rinse aluminum cans or food tins. Crush cans if possible to optimize bin volume."
+  },
+  "paper": {
+    "bin_color": "Blue",
+    "stream": "Dry Recyclables (Paper)",
+    "badge_class": "recyclable",
+    "guidance": "Keep clean and dry. Avoid recycling paper contaminated with food residue, wax, or chemical adhesives."
+  },
+  "plastic": {
+    "bin_color": "Blue",
+    "stream": "Dry Recyclables (Plastics)",
+    "badge_class": "recyclable",
+    "guidance": "Rinse bottles and containers. Check recycling triangle (#1 PET, #2 HDPE are widely recyclable). Replace caps securely."
+  },
+  "shoes": {
+    "bin_color": "Yellow/Purple",
+    "stream": "Footwear & Textiles",
+    "badge_class": "textile",
+    "guidance": "Tie pairs together by laces. Donate usable pairs or take to shoe recycling programs that shred soles into playground turf."
+  },
+  "trash": {
+    "bin_color": "Black/Grey",
+    "stream": "Residual / Non-Recyclable",
+    "badge_class": "landfill",
+    "guidance": "Non-recyclable household waste destined for sanitary landfill or waste-to-energy incineration. Segregate strictly to avoid contaminating recyclables."
+  },
+  "white-glass": {
+    "bin_color": "Blue",
+    "stream": "Recyclable Glass (Clear)",
+    "badge_class": "recyclable",
+    "guidance": "Rinse clean. Clear flint glass is highly valuable for remelting into new food containers and glass jars."
+  }
+}
